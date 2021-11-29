@@ -1,0 +1,42 @@
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def push(self, X):
+        self.queue.insert(0, X)
+
+    def pop(self):
+        if self.empty(): return -1
+        return self.queue.pop()
+
+    def size(self):
+        return len(self.queue)
+
+    def empty(self):
+        return self.queue == []
+
+    def front(self):
+        if self.empty(): return -1
+        return self.queue[len(self.queue) - 1]
+
+    def back(self):
+        if self.empty(): return -1
+        return self.queue[0]
+
+q = Queue()
+T = int(input())
+for _ in range(T):
+    cmd = input().split(' ')
+    command = cmd[0]
+    if command == 'push':
+        q.push(int(cmd[1]))
+    elif command == 'front':
+        print(q.front())
+    elif command == 'back':
+        print(q.back())
+    elif command == 'empty':
+        print(int(q.empty()))
+    elif command == 'pop':
+        print(q.pop())
+    elif command == 'size':
+        print(q.size())
