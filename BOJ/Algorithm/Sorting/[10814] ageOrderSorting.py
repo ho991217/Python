@@ -41,21 +41,6 @@ def quick(arr):
 
     return quick(left) + pivot + quick(right)
 
-# def merge(arr):
-#     if len(arr) <= 1: return arr
-#
-#     mid = arr[len(arr) // 2]
-#     left = []
-#     right = []
-#
-#     for el in arr:
-#         if age(el) < age(mid):
-#             left.append(el)
-#         elif age(el) > age(mid):
-#             right.append(el)
-#         else:
-#             if regOrder(el) < regOrder()
-
 list = quick(list)
 
 for element in list:
