@@ -1,6 +1,7 @@
 import sys
 N = int(sys.stdin.readline())
 list = []
+#test
 
 for index in range(N):
     age, name = map(str, sys.stdin.readline().rstrip().split(' '))
