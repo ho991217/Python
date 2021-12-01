@@ -1,3 +1,4 @@
+import sys
 class Queue:
     def __init__(self):
         self.queue = []
@@ -24,12 +25,16 @@ class Queue:
         return self.queue[0]
 
 q = Queue()
-T = int(input())
-for _ in range(T):
-    cmd = input().split(' ')
-    command = cmd[0]
-    if command == 'push':
-        q.push(int(cmd[1]))
+T = int(sys.stdin.readline().rstrip())
+cmd = [sys.stdin.readline().rstrip() for _ in range(T)]
+for i in range(len(cmd)):
+    if 'push' in cmd[i]:
+        cmd[i] = cmd[i].split(' ')
+
+
+for command in cmd:
+    if command[0] == 'push':
+        q.push(int(command[1]))
     elif command == 'front':
         print(q.front())
     elif command == 'back':
