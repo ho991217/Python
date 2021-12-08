@@ -55,9 +55,9 @@ class DiceSet:
             counter += 1
 
 
-class scoreBoard():
+class scoreBoard:
     def __init__(self):
-        self.playerScore = [0 for _ in range(14)]
+        self.playerScore = [None for _ in range(14)]
         self.scoreBoard = [0 for _ in range(14)]
         """
         index별 점수:
@@ -127,29 +127,53 @@ class scoreBoard():
         else: self.scoreBoard[13] = 0
 
     def setScore(self, index = 0):
-        self.playerScore = self.scoreBoard
+        self.playerScore[index] = self.scoreBoard[index]
 
     def showCurPlayerScore(self):
-        print(f'1: {self.playerScore[0]}')
-        print(f'2: {self.playerScore[1]}')
-        print(f'3: {self.playerScore[2]}')
-        print(f'4: {self.playerScore[3]}')
-        print(f'5: {self.playerScore[4]}')
-        print(f'6: {self.playerScore[5]}')
+        print('-------- My score --------')
+        print(f'(1) 1: {self.playerScore[0]}')
+        print(f'(2) 2: {self.playerScore[1]}')
+        print(f'(3) 3: {self.playerScore[2]}')
+        print(f'(4) 4: {self.playerScore[3]}')
+        print(f'(5) 5: {self.playerScore[4]}')
+        print(f'(6) 6: {self.playerScore[5]}')
         print(f'Bonus: {self.playerScore[6]}')
-        print(f'X3: {self.playerScore[7]}')
-        print(f'X4: {self.playerScore[8]}')
-        print(f'Full House: {self.playerScore[9]}')
-        print(f'Small Straight: {self.playerScore[10]}')
-        print(f'Large Straight: {self.playerScore[11]}')
-        print(f'Joker: {self.playerScore[12]}')
-        print(f'Yacht: {self.playerScore[13]}')
+        print()
+        print(f'(7) X3: {self.playerScore[7]}')
+        print(f'(8) X4: {self.playerScore[8]}')
+        print(f'(9) Full House: {self.playerScore[9]}')
+        print(f'(10) Small Straight: {self.playerScore[10]}')
+        print(f'(11) Large Straight: {self.playerScore[11]}')
+        print(f'(12) Joker: {self.playerScore[12]}')
+        print(f'(13) Yacht: {self.playerScore[13]}')
+        print('--------------------------')
 
 
-#
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.score = 0
+        tmp = scoreBoard()
+        self.scoreBoard = [tmp.playerScore]
+        self.round = 14
+
+    def turn(self):
+        if self.round == 0:
+            return False
+        chances = 3
+        dices = DiceSet()
+        init = dices.roll()
+        # for i in init
+        #
+        # self.round -= 1
+
+
 a = DiceSet()
-a.debugDice([1, 1, 1, 2, 2])
+a.debugDice([3, 3, 3, 4, 4])
 s = scoreBoard()
 s.eval(a.getDices())
-s.setScore()
+s.setScore(9)
 s.showCurPlayerScore()
+
+p1 = []
+
