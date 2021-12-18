@@ -54,5 +54,11 @@ brknBtn = list(map(int, sys.stdin.readline().rstrip().split(' ')))
 for i in brknBtn:
     numbers.remove(i)
 
-# for _ in range(len(str(target))):
-#
+closest = [0 for _ in range(len(target))]
+for i in range(len(target)):
+    for j in range(len(numbers)):
+        closest[i] = j
+        if j == 0:
+            tmpNumber = int(''.join(closest))
+        if target - int(''.join(closest)) < target - tmpNumber:
+            tmpNumber = int(''.join(closest))
