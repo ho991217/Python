@@ -1,23 +1,11 @@
 import sys
 
-arr = []
+number = [0 for _ in range(0, 10001)]
 
-for _ in range(int(sys.stdin.readline().rstrip())):
-    n = int(sys.stdin.readline().rstrip())
+for _ in range(int(sys.stdin.readline())):
+    number[int(sys.stdin.readline())] += 1
 
-    for i in arr:
-        if i[0] == n:
-            i[1] += 1
-            break
-    arr.append([n, 1])
-
-print(arr)
-
-# def quick(arr):
-#     for i in range(len(arr) - 1, 0, -1):
-#         for j in range(i):
-#             if arr[j] > arr[j+1]:
-#                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
-# quick(arr)
-# for i in arr:
-#     print(i)
+for i in range(len(number)):
+    if number[i] != 0:
+        for _ in range(number[i]):
+            print(i)
