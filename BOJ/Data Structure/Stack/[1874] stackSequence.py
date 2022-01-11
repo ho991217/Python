@@ -1,27 +1,21 @@
 import sys
 
-s = []
-command = ''
-n = int(sys.stdin.readline())
-sequence = [int(sys.stdin.readline()) for _ in range(n)]
-number = [i for i in range(n, 0, -1)]
+stack = []
+calulate = []
+counter = 1
 
-while True:
-    if not s:
-        s.append(number.pop())
-        command += '+\n'
+for i in range(int(sys.stdin.readline())):
+    number = int(sys.stdin.readline())
+    while counter <= number:
+        stack.append(counter)
+        calulate.append('+')
+        counter += 1
 
+    if stack[-1] == number:
+        stack.pop()
+        calulate.append('-')
     else:
-        if s[-1] < sequence[0]:
-            s.append(number.pop())
-            command += '+\n'
+        print('NO')
+        exit(0)
 
-        elif s[-1] == sequence[0]:
-            s.pop()
-            command += '-\n'
-
-        else:
-            print('NO')
-            exit(0)
-
-print(command, end='')
+print('\n'.join(calulate))
