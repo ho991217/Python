@@ -1,23 +1,14 @@
 import sys
 
-def showAPT(arr):
-    for i in range(len(arr)):
-        for j in range(len(arr[i])):
-            print(arr[i][j],end=' ')
-        print()
+testCases = []
+maxK, maxN = 0, 0
 
-aptIn = [[int(sys.stdin.readline().rstrip()), int(sys.stdin.readline().rstrip())] for _ in range(int(sys.stdin.readline().rstrip()))]
+for _ in range(int(sys.stdin.readline())):
+    k = int(sys.stdin.readline())
+    n = int(sys.stdin.readline())
+    people = [i for i in range(1, n + 1)]
 
-
-maxf = aptIn[0]
-for i in range(1, len(aptIn)):
-    if aptIn[i][0] > maxf[0]:
-        maxf = aptIn[i]
-    elif aptIn[i][0] == maxf[0]:
-        if aptIn[i][1] > maxf[1]:
-            maxf = aptIn[i]
-
-apt = [[i for i in range(1, maxf[1] + 1)]]
-
-showAPT(apt)
-# print(apt)
+    for _ in range(k):
+        for lower in range(1, n):
+            people[lower] += people[lower - 1]
+    print(people[len(people) - 1])
