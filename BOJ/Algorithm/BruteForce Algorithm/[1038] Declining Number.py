@@ -1,6 +1,6 @@
 import sys
 
-# N = int(sys.stdin.readline())
+N = int(sys.stdin.readline())
 cache = []
 
 def isDecline(n):
