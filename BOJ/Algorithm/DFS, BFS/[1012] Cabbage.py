@@ -1,38 +1,36 @@
-def printField(field):
-    for x in field:
-        for y in x:
-            print(y, end= ' ')
-        print()
+import sys
+from collections import deque
 
-T = int(input())
+T = int(sys.stdin.readline())
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+def BFS(x, y):
+    q = deque()
+    q.append((x, y))
+    while q:
+        x, y = q.popleft()
+        for i in range(4):
+            nx = dx[i] + x
+            ny = dy[i] + y
+            if 0 <= nx < M and 0 <= ny < N and field[ny][nx][0] == 1 and field[ny][nx][1] is False:
+                field[ny][ny][1] = True
+                q.append((nx, ny))
 
 for _ in range(T):
-    M, N, K = map(int, input().split())
-    field = [0 for i in range(M * N)]
+    M, N, K = map(int, sys.stdin.readline().rstrip().split(' '))
 
-    for __ in range(K):
-        x, y = map(int, input().split())
-        field[x * N + y] = 1
+    field = [[[0, False] for x in range(M)] for j in range(N)]
+    for i in range(K):
+        x, y = map(int, sys.stdin.readline().rstrip().split(' '))
+        field[x][y][0] = 1
 
-    graph = [0 for i in range(len(field))]
+    # counter = 0
+    # for x in range(M):
+    #     for y in range(N):
+    #         if field[y][x][1] is False:
+    #             # BFS(x, y)
+    #             counter += 1
+    # print(counter)
 
-    for i in range(len(field)):
-        if field[i] == 1:
-            # 좌측 끝
-            if i % N == 0:
-                if field[i + 1] == 1:
-                    graph[i] = i + 1
-
-            # 우측 끝
-            elif i % N == N - 1:
-                if field[i - 1] == :
-                    graph[i] = i - 1
-
-            # 최상단
-            if i < N:
-                if field[N * ]
-
-            # 최하단
-            elif i >= N * (M - 1):
-
-
+    print(field)
