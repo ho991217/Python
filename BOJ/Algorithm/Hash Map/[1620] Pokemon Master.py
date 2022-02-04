@@ -1,15 +1,20 @@
 import sys
 
 M, N = map(int, sys.stdin.readline().split(' '))
+dex = dict()
 
-dex = [sys.stdin.readline().rstrip() for _ in range(M)]
+pokemons = []
 
-
+for i in range(M):
+    pokemon = sys.stdin.readline().rstrip()
+    dex[pokemon] = i
+    pokemons.append(pokemon)
 
 for i in range(N):
     q = sys.stdin.readline().rstrip()
-    if ord(q[0]) < 60:
-        print(dex[int(q) - 1])
+    isNumber = (ord(q[0]) < 60)
 
-    elif 65 <= ord(q[0]):
-        print(dex.index(q) + 1)
+    if isNumber:
+        print(pokemons[int(q) - 1])
+    else:
+        print(dex[q] + 1)
