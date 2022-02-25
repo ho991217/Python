@@ -1,43 +1,66 @@
 import sys
 
+class DoubleQueue:
+    def __init__(self):
+        self.doubleQueue = dict()
+
+    def add(self, value):
+        if value in self.doubleQueue:
+            self.doubleQueue[value] += 1
+        else:
+            self.doubleQueue[value] = 1
+
+    def delMax(self):
+        if not self.isEmpty():
+            maxNumber = self.max()
+            if self.doubleQueue[maxNumber] >= 2:
+                self.doubleQueue[maxNumber] -= 1
+            else:
+                self.doubleQueue.pop(maxNumber)
+
+    def delMin(self):
+        if not self.isEmpty():
+            minNumber = self.min()
+            if self.doubleQueue[minNumber] >= 2:
+                self.doubleQueue[minNumber] -= 1
+            else:
+                self.doubleQueue.pop(minNumber)
+
+    def isEmpty(self):
+        return list(self.doubleQueue.keys()) == []
+
+    def max(self):
+        return max(list(self.doubleQueue.keys()))
+
+    def min(self):
+        return min(list(self.doubleQueue.keys()))
+
+
 T = int(sys.stdin.readline())
 
-for _ in  range(T):
+for _ in range(T):
     k = int(sys.stdin.readline())
-    cmd = [list(sys.stdin.readline().split()) for _ in range(k)]
+    dq = DoubleQueue()
 
-    queue = []
+    for i in range(k):
+        command, number = sys.stdin.readline().rstrip().split(' ')
+        number = int(number)
 
-    for command in cmd:
-        if command[0] == 'I':
-            maxV = max(queue)
-            minV = min(queue)
-            if queue == []:
-                queue.append(command[1])
-            else:
-                if maxV == minV:
-                    if maxV < command[1]:
-                        queue.append(command[1])
-                    else:
-                        queue.insert(0, command[1])
+        if command == 'I':
+            dq.add(number)
+        elif command == 'D':
+            if number == 1:
+                dq.delMax()
+            elif number == -1:
+                dq.delMin()
 
-                else:
-                    if maxV <= command[1]:
-                        queue.append(command[1])
-                    elif minV <= command[1] and maxV >= command[1]:
-                        queue.insert(1)
-
-        elif command[0] == 'D':
-            queue.sort()
-            if queue != []:
-                if command[1] == 1:
-                    queue.pop()
-                else:
-                    queue.pop(0)
-
-        print(queue)
-
-    if queue == []:
+    if dq.isEmpty():
         print('EMPTY')
     else:
-        print(min(queue), max(queue))
+        print(dq.max(), end=' ')
+        print(dq.min())
+
+
+
+
+
