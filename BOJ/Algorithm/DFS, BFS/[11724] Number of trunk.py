@@ -2,40 +2,32 @@ import sys
 from collections import deque
 
 N, M = map(int, sys.stdin.readline().split())
-adj = dict()
+if M == 0:
+    print(N)
+    exit(0)
+adj = [[] for i in range(N + 1)]
 
 for _ in range(M):
     u, v = map(int, sys.stdin.readline().split())
-    if u in adj:
-        adj[u] = adj[u] + [v]
-    else:
-        adj[u] = [v]
+    adj[u].append(v)
+    adj[v].append(u)
 
-    if v in adj:
-        adj[v] = adj[v] + [u]
-    else:
-        adj[v] = [u]
+def bfs(graph, visited, index):
+    q = deque([index])
+    visited[index] = True
 
-
-def bfs(graph, start):
-    visited = []
-    q = deque([start])
     while q:
         cur = q.popleft()
-        if cur not in visited:
-            visited.append(cur)
-            q.extend(graph[cur])
-
-    for item in visited:
-        if item in list(graph.keys()):
-            graph.pop(item)
-
-    return graph
+        for i in graph[cur]:
+            if not visited[i]:
+                visited[i] = True
+                q.append(i)
 
 counter = 0
-while adj:
+visited = [False] * (N + 1)
+for i in range(1, N + 1):
+    if visited[i]: continue
+    bfs(adj, visited, i)
     counter += 1
-    starter = list(adj.keys())[0]
-    adj = bfs(adj, starter)
 
 print(counter)
