@@ -37,6 +37,7 @@ def bfs(graph, roasted):
     elif apart:
         return -1
 
+
     day = 0
     visited = roasted
     queue = deque()
