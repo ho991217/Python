@@ -41,7 +41,6 @@ def bfs(graph, roasted):
     visited = roasted
     queue = deque()
     queue.append(roasted)
-
     while queue:
         nodes = queue.popleft()
         if nodes == []: break
