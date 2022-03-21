@@ -53,10 +53,10 @@ def cal(arr):
     result = check(arr)
     if result is None:
         ans.append('(')
-        str(cal(slice(arr, 0)))
-        str(cal(slice(arr, 1)))
-        str(cal(slice(arr, 2)))
-        str(cal(slice(arr, 3)))
+        cal(slice(arr, 0))
+        cal(slice(arr, 1))
+        cal(slice(arr, 2))
+        cal(slice(arr, 3))
         ans.append(')')
 
     elif result == 0:
